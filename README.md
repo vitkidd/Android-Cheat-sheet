@@ -503,73 +503,7 @@ savedInstanceState.Also it won't affect the performance even if there are large 
 * <b>What is the difference between Dialog & DialogFragment?</b></br>
    * A fragment that displays a dialog window, floating on top of its activity's window. This fragment contains a Dialog object, which it displays as appropriate based on the fragment's state. Dialogs are entirely dependent on Activities. If the screen is rotated, the dialog is dismissed. Dialog fragments take care of orientation, configuration changes as well.</br>
    
-   
-* <b>Difference between margin & padding?</b></br>
-   * Padding will be space added inside the container, for instance, if it is a button, padding will be added inside the button. Margin will be space added outside the container.</br>
-   
-   
-* <b>What is View Group? How are they different from Views?</b></br>
-   * <b>View</b>: View objects are the basic building blocks of User Interface(UI) elements in Android. View is a simple rectangle box which responds to the user's actions. Examples are EditText, Button, CheckBox etc. View refers to the ```android.view.View``` class, which is the base class of all UI classes.
-   * <b>ViewGroup</b>: ViewGroup is the invisible container. It holds View and ViewGroup. For example, LinearLayout is the ViewGroup that contains Button(View), and other Layouts also. ViewGroup is the base class for Layouts.</br>   
-  
-  
-* <b>What is the difference between a regular .png and a nine-patch image?</b></br>
-   * It is one of a resizable bitmap resource which is being used as backgrounds or other images on the device. The NinePatch class allows drawing a bitmap in nine sections. The four corners are unscaled; the middle of the image is scaled in both axes, the four edges are scaled into one axis.</br>
-   
-   
-* <b>Difference between RelativeLayout and LinearLayout?</b></br>
-   * <b>Linear Layout</b> - Arranges elements either vertically or horizontally. i.e. in a row or column. 
-   * <b>Relative Layout</b> - Arranges elements relative to parent or other elements.</br>
-   
-   
-* <b>What is ConstraintLayout?</b></br>
-   * It allows you to create large and complex layouts with a flat view hierarchy (no nested view groups). It's similar to RelativeLayout in that all views are laid out according to relationships between sibling views and the parent layout, but it's more flexible than RelativeLayout and easier to use with Android Studio's Layout Editor.
-   * [Sample Implementation](https://github.com/anitaa1990/ConstraintLayout-Sample) 
-   * You can read more about how to implement a simple app with ConstraintLayout [here](https://android.jlelse.eu/learning-to-implement-constraintlayout-in-android-8ddc69fe0a1a), by yours truly :)</br>
-   
-   
-* <b>When might you use a FrameLayout?</b></br>
-   * Frame Layouts are designed to contain a single item, making them an efficient choice when you need to display a single View.
-   * If you add multiple Views to a FrameLayout then it’ll stack them one above the other, so FrameLayouts are also useful if you need overlapping Views, for example if you’re implementing an overlay or a HUD element.</br> 
-   
-   
-* <b>What is Adapters?</b></br>
-   * An adapter responsible for converting each data entry into a View that can then be added to the AdapterView (ListView/RecyclerView).</br>
-   
-
-* <b>How to support different screen sizes?</b></br>
-   * Create a flexible layout - The best way to create a responsive layout for different screen sizes is to use ConstraintLayout as the base layout in your UI. ConstraintLayout allows you to specify the position and size for each view according to spatial relationships with other views in the layout. This way, all the views can move and stretch together as the screen size changes.
-   * Create stretchable nine-patch bitmaps
-   * Avoid hard-coded layout sizes - Use wrap_content or match_parent. Create alternative layouts - The app should provide alternative layouts to optimize the UI design for certain screen sizes. For eg: different UI for tablets
-   * Use the smallest width qualifier.  For example, you can create a layout named main_activity that's optimized for handsets and tablets by creating different versions of the file in directories as follows:			
-      * res/layout/main_activity.xml           # For handsets (smaller than 600dp available width)						
-      * res/layout-sw600dp/main_activity.xml   # For 7” tablets (600dp wide and bigger). 
-      * The smallest width qualifier specifies the smallest of the screen's two sides, regardless of the device's current orientation, so it's a simple way to specify the overall screen size available for your layout.</br>
-  
-  
-  
-* <b>Outline the process of creating custom Views:</b></br>
-   * Create a class that Subclass a view
-   * Create a res/values/attrs.xml file and declare the attributes you want to use with your custom View.
-   * In your View class, add a constructor method, instantiate the Paint object, and retrieve your custom attributes.
-   * Override either onSizeChanged() or onMeasure().
-   * Draw your View by overriding onDraw().
-   * [Sample Implementation](https://code.tutsplus.com/tutorials/android-sdk-creating-custom-views--mobile-14548) </br>
-   
-   
-* <b>Briefly describe some ways that you can optimize View usage</b></br>
-   * Checking for excessive overdraw: install your app on an Android device, and then enable the "Debug GPU Overview" option.
-   * Flattening your view hierarchy: inspect your view hierarchy using Android Studio’s ‘Hierarchy Viewer’ tool.
-   * Measuring how long it takes each View to complete the measure, layout, and draw phases. You can also use Hierarchy Viewer to identify any parts of the rendering pipeline that you need to optimize.</br>
-   
-   
-* <b>Bitmap pooling in android?</b></br>
-   * Bitmap pooling is a simple technique, that aims to reuse bitmaps instead of creating new ones every time. When you need a bitmap, you check a bitmap stack to see if there are any bitmaps available. If there are not bitmaps available you create a new bitmap otherwise you pop a bitmap from the stack and reuse it. Then when you are done with the bitmap, you can put it on a stack. [Find more info here](https://www.linkedin.com/pulse/performance-improvement-bitmap-pooling-android-ali-muzaffar/)</br>
-   
-   
-* <b>How to load bitmap to memory?</b></br>
-   * [Find more info here](https://android.jlelse.eu/loading-large-bitmaps-efficiently-in-android-66826cd4ad53)</br>   
-  
+ 
   
 * <b>What are the permission protection levels in Android?</b></br>
    * <b>Normal</b> - A lower-risk permission that gives requesting applications access to isolated application-level features, with minimal risk to other applications, the system, or the user. The system automatically grants this type of permission to a requesting application at installation, without asking for the user's explicit approval.
@@ -603,36 +537,6 @@ savedInstanceState.Also it won't affect the performance even if there are large 
    </br>
   
   
-* <b>What’s the difference between commit() and apply() in SharedPreferences?</b></br>
-   * ```commit()``` writes the data synchronously and returns a boolean value of success or failure depending on the result immediately.
-   * ```apply()``` is asynchronous and it won’t return any boolean response. Also if there is an apply() outstanding and we perform another commit(). The commit() will be blocked until the apply() is not completed.</br>
-   
-   
-* <b>How does RecyclerView work?</b></br>
-   * Let's start with some background on RecyclerView which is needed to understand ```onBindViewHolder()``` method inside RecyclerView.</br>
-   * RecyclerView is designed to display long lists (or grids) of items. Say you want to display 100 rows of something. A simple approach would be to just create 100 views, one for each row and lay all of them out. But that would be wasteful because at any point of time, only 10 or so items could fit on screen and the remaining items would be off screen. So RecyclerView instead creates only the 10 or so views that are on screen. This way you get 10x better speed and memory usage. 
-   * <b>But what happens when you start scrolling and need to start showing next views?</b>
-     * Again a simple approach would be to create a new view for each new row that you need to show. But this way by the time you reach the end of the list you will have created 100 views and your memory usage would be the same as in the first approach. And creating views takes time, so your scrolling most probably wouldn't be smooth. This is why RecyclerView takes advantage of the fact that as you scroll, <b>new rows come on screen also old rows disappear off screen</b>. Instead of creating new view for each new row, an old view is recycled and reused by binding new data to it.
-     * This happens inside the ```onBindViewHolder()``` method. Initially you will get new unused view holders and you have to fill them with data you want to display. But as you scroll you will start getting view holders that were used for rows that went off screen and you have to replace old data that they held with new data.</br>
-
-   
-* <b>How does RecyclerView differ from ListView?</b></br>
-   * <b>ViewHolder Pattern</b>:  Recyclerview implements the ViewHolders pattern whereas it is not mandatory in a ListView. A RecyclerView recycles and reuses cells when scrolling. 
-   * <b>What is a ViewHolder Pattern?</b> - A ViewHolder object stores each of the component views inside the tag field of the Layout, so you can immediately access them without the need to look them up repeatedly. In ListView, the code might call ```findViewById()``` frequently during the scrolling of ListView, which can slow down performance. Even when the Adapter returns an inflated view for recycling, you still need to look up the elements and update them. A way around repeated use of ```findViewById()``` is to use the "view holder" design pattern.
-   * <b>LayoutManager</b>: In a ListView, the only type of view available is the vertical ListView.  A RecyclerView decouples list from its container so we can put list items easily at run time in the different containers (linearLayout, gridLayout) by setting LayoutManager.
-   * <b>Item Animator</b>: ListViews are lacking in support of good animations, but the RecyclerView brings a whole new dimension to it.</br> 
-   
-   
-* <b>How would you implement swipe animation in Android</b></br> 
-   ```
-   <set xmlns:android="http://schemas.android.com/apk/res/android"
-     android:shareInterpolator="false">
-    <translate android:fromXDelta="-100%" android:toXDelta="0%"
-             android:fromYDelta="0%" android:toYDelta="0%"
-             android:duration="700"/>
-    </set>
-    ```
-</br>   
   
   
 * <b>Arraymap/SparseArray vs HashMap in Android?</b></br>
