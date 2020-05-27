@@ -322,50 +322,11 @@ Cheat Sheet for Android Interviews
 
   
   
-* <b>What are Handlers?</b></br>
-  * Handlers are objects for managing threads. It receives messages and writes code on how to handle the message. They run outside of the activity’s lifecycle, so they need to be cleaned up properly or else you will have thread leaks.
-  * Handlers allow communicating between the background thread and the main thread.
-  * A Handler class is preferred when we need to perform a background task repeatedly after every x seconds/minutes.</br>
-  
-  
- * <b>What is a Job Scheduling?</b></br>
-   * Job Scheduling api, as the name suggests, allows to schedule jobs while letting the system optimize based on memory, power, and connectivity conditions.
-   * The JobScheduler supports batch scheduling of jobs. The Android system can combine jobs so that battery consumption is reduced. JobManager makes handling uploads easier as it handles automatically the unreliability of the network. It also survives application restarts. 
-   * Scenarios:
-     * Tasks that should be done once the device is connect to a power supply
-     * Tasks that require network access or a Wi-Fi connection.
-     * Task that are not critical or user facing
-     * Tasks that should be running on a regular basis as batch where the timing is not critical
-     * [Reference](http://www.vogella.com/tutorials/AndroidTaskScheduling/article.html#schedulingtasks) </br>
-  
-  
 * <b>What is the onTrimMemory() method?</b></br>
    * ```onTrimMemory()```: Called when the operating system has determined that it is a good time for a process to trim unneeded memory from its process. This will happen for example when it goes in the background and there is not enough memory to keep as many background processes running as desired.
    * Android can reclaim memory for from your app in several ways or kill your app entirely if necessary to free up memory for critical tasks. To help balance the system memory and avoid the system's need to kill your app process, you can implement the ```ComponentCallbacks2``` interface in your Activity classes. The provided onTrimMemory() callback method allows your app to listen for memory related events when your app is in either the foreground or the background, and then release objects in response to app lifecycle or system events that indicate the system needs to reclaim memory. [Reference](https://developer.android.com/topic/performance/memory)</br>
   
   
-* <b>Android Bound Service</b></br>
-  * A bound service is a service that allows other android components (like activity) to bind to it and send and receive data.
-A bound service is a service that can be used not only by components running in the same process as local service, but activities and services, running in different processes, can bind to it and send and receive data.</br>
-  * When implementing a bound service we have to extend Service class but we have to override onBind method too. This method returns an object that implements IBinder, that can be used to interact with the service.</br>
-  * Implementing Android bound service with Android Messenger</br>
-  * Service based on Messenger can communicate with other components in different processes, known as Inter Process Communication (IPC), without using AIDL.</br>
-  * <b>A service handler</b>: this component handles incoming requests from clients that interact with the service itself.</br>
-  * <b>A Messenger</b>: this class is used to create an object implementing IBinder interface so that a client can interact with the service.</br>
-  * Example Implementation: [Link](https://www.survivingwithandroid.com/2014/01/android-bound-service-ipc-with-messenger-2.html)
-  
-
-* <b>AIDL vs Messenger Queue</b></br>
-  * AIDL is for purpose when you've to go application level communication for data and control sharing, a scenario depicting it can be : An app requires list of all contacts from Contacts app (content part lies here) plus it also wants to show the call's duration and you can also disconnect it from that app (control part lies here).
-  * In Messenger queues you're more IN the application and working on threads and processes to manage the queue having messages so no Outside services interference here.</br>
-  * Messenger is needed if you want to bind a remote service (e.g. running in another process).</br>
-
-
-
-* <b>What is a ThreadPool? And is it more effective than using several separate Threads?</b></br>
-  * Creating and destroying threads has a high CPU usage, so when we need to perform lots of small, simple tasks concurrently, the overhead of creating our own threads can take up a significant portion of the CPU cycles and severely affect the final response time.</br>
-  * ThreadPool consists of a task queue and a group of worker threads, which allows it to run multiple parallel instances of a task.</br>
-
 
 * <b>Difference between Serializable and Parcelable?</b></br>
   * Serializable is a standard Java interface. Parcelable is an Android specific interface where you implement the serialization yourself. It was created to be far more efficient than Serializable (The problem with this approach is that reflection is used and it is a slow process. This mechanism also tends to create a lot of temporary objects and cause quite a bit of garbage collection.).
@@ -377,12 +338,6 @@ A bound service is a service that can be used not only by components running in 
   * Activities are basically containers or windows to the user interface. Services is a component that is used to perform operations on the background. It does not have an UI.</br>
   
   
-  
-* <b>How would you update the UI of an activity from a background service</b></br>
-  * We need to register a LocalBroadcastReceiver in the activity. And send a broadcast with the data using intents from the background service. As long as the activity is in the foreground, the UI will be updated from the background. Ensure to unregister the broadcast receiver in the onStop() method of the activity to avoid memory leaks. 
-We can also register a Handler and pass data using Handlers. I have detailed a sample implementation on this. You can check it out [here](https://medium.com/@anitaa_1990/how-to-update-an-activity-from-background-service-or-a-broadcastreceiver-6dabdb5cef74)</br>
-
-
 
 * <b>What is an intent?</b></br>
   * Intents are messages that can be used to pass information to the various components of android. For instance, launch an activity, open a webview etc.</br>
